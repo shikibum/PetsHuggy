@@ -14,5 +14,17 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+<!-- flashがemptyでない場合 -->
+    <% unless flash.empty? %>
+      <script type = "text/javascript">
+        <% flash.each do |f| %>
+        flash[:notice] = "Signed in successfully."
+        f[0] = :notice, f[1] = "Signed in successfully." 
+          <% type = f[0].to_s.gsub('alert','error').gsub('notice','info') %>
+          toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+      </script>
+    <% end %>
+
   </body>
 </html>
