@@ -29,6 +29,7 @@ before_action :authenticate_user!
   end
 
   def basics
+    @listing = Listing.find(params[:id])
   end
 
   private
