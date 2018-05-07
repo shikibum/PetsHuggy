@@ -8,6 +8,7 @@ before_action :authenticate_user!
   end
 
   def new
+    @listing = current_user.listings.build
   end
 
   def create
