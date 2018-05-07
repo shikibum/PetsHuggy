@@ -12,13 +12,14 @@ before_action :authenticate_user!
   end
 
   def create
-    @listing = current_user.listings.build(lisiting_params)
+    @listing = current_user.listings.build(listing_params)
 
     if @listing.save
-      redirect_to edit_listing_path(@listing), notice: "リスティングを作成・保存しました"
+      redirect_to manage_listing_basics_path(@listing), notice: "リスティングを作成・保存しました"
     else
       redirect_to new_listing_path, notice: "リスティングを作成・保存できませんでした"
     end
+
   end
 
   def edit
@@ -27,8 +28,11 @@ before_action :authenticate_user!
   def update
   end
 
+  def basics
+  end
+
   private
-  def lisiting_params
+  def listing_params
     params.require(:listing).permit(:home_type, :pet_type, :breeding_years,  :pet_size)
   end
 
