@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
 before_action :authenticate_user!
-before_action :set_listing, only: [:basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
+before_action :set_listing, only: [:update, :basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
 
 
   def index
@@ -28,6 +28,9 @@ before_action :set_listing, only: [:basics, :description, :address, :price, :pho
   end
 
   def update
+    if @listing.update(listing_params)
+      redirect_back fallback_location: manage_listing_price_path,notice:"更新できました"
+    end
   end
 
   def basics
@@ -56,7 +59,7 @@ before_action :set_listing, only: [:basics, :description, :address, :price, :pho
 
   private
   def listing_params
-    params.require(:listing).permit(:home_type, :pet_type, :breeding_years,  :pet_size)
+    params.require(:listing).permit(:home_type, :pet_type, :breeding_years, :pet_size, :price_pernight)
   end
   def set_listing
     @listing = Listing.find(params[:id])
