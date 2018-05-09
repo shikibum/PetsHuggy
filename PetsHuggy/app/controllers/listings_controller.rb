@@ -46,6 +46,7 @@ before_action :set_listing, only: [:update, :basics, :description, :address, :pr
   end
 
   def photos
+    @photo = Photo.new
   end
 
   def calendar
