@@ -4,6 +4,7 @@ before_action :set_listing, only: [:update, :basics, :description, :address, :pr
 
 
   def index
+    @listings = current_user.listings
   end
 
   def show
