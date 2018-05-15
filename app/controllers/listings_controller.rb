@@ -62,7 +62,7 @@ before_action :set_listing, only: [:update, :basics, :description, :address, :pr
 
   private
   def listing_params
-    params.require(:listing).permit(:home_type, :pet_type, :breeding_years, :pet_size, :price_pernight)
+    params.require(:listing).permit(:home_type, :pet_type, :breeding_years, :pet_size, :price_pernight, :address)
   end
   def set_listing
     @listing = Listing.find(params[:id])
