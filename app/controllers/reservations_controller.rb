@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
 
   def create
-    @reservation = current_user.reservations.create(resetvation_params)
+    @reservation = current_user.reservations.create(reservation_params)
 
-    redirect_to @reservati.listing, notice:"予約が完了しました"
+    redirect_to @reservation.listing, notice:"予約が完了しました"
   end
 
   private
