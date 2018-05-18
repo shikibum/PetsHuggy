@@ -2,6 +2,10 @@
 @import "bootstrap";
 @import "toastr";
 @import "dropzone/dropzone";
+@import "jquery-ui/datepicker";
+// @import "jquery-ui/widgets/datepicker";
+@import "jquery-bootstrap-datepicker";
+
 
 .jumbotron {
     padding-top: 0px;

@@ -14,6 +14,8 @@
 //= require dropzone
 //= require rails-ujs
 //= require bootstrap-sprockets
+//= require jquery-ui/datepicker
+//= require jquery-ui/datepicker-ja
 //= require toastr
 //= require activestorage
 //= require turbolinks
