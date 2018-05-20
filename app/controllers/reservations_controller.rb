@@ -28,13 +28,14 @@ class ReservationsController < ApplicationController
       end
 
       #新しい日付の予約をクリエイトする
+      selectedDates
       if selectedDates
         selectedDates.each do |date|
           current_user.reservations.create(:listing_id => @listing.id,:start_date => date,:end_date => date)
         end
       end
 
-      redirect_to :back, notice: "更新しました。"
+      redirect_back(fallback_location: manage_listing_calendar_path(@listing), notice: "更新しました。")
 
     else
 
@@ -46,10 +47,11 @@ class ReservationsController < ApplicationController
   end
 
   def setdate
-    # ajaxで送られたlisting_idを元にそのリスティングの予約をjsonで返す
+    # ajaxで送られてきたlisting_idを元にそのリスティングの予約をjsonで返す
     listing = Listing.find(params[:listing_id])
     today = Date.today
-    reservations = listing.reservations.where("start_date >= ? OR end_date >= ?", today, today)
+    reservations = listing.reservations.where("start_date >= ? OR end_date >= ?",today,today)
+
     render json: reservations
   end
 
@@ -58,20 +60,22 @@ class ReservationsController < ApplicationController
     end_date = Date.parse(params[:end_date])
 
     result = {
-      duplicate: is_duplicate(start_date, end_date)
+        duplicate: is_duplicate(start_date, end_date)
     }
+
     render json: result
   end
 
   private
-  def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :price_pernight, :total_price, :listing_id)
-  end
+    def reservation_params
+      params.require(:reservation).permit(:start_date, :end_date, :price_pernight, :total_price, :listing_id)
+    end
 
-  def is_duplicate(start_date, end_date)
-    listing = Listing.find(params[:listing_id])
+    def is_duplicate(start_date, end_date)
+      listing = Listing.find(params[:listing_id])
 
-    check = listing.reservations.where("? < start_date AND end_date < ?", start_date, end_date)
-    check.size > 0? true : false
-  end
+      check = listing.reservations.where("? < start_date AND end_date < ?",start_date,end_date)
+      check.size > 0? true : false
+    end
+
 end
