@@ -55,6 +55,8 @@ before_action :set_listing, only: [:update, :basics, :description, :address, :pr
   end
 
   def bankaccount
+    @user = @listing.user
+    session[:listing_id] = @listing.id
   end
 
   def publish
