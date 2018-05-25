@@ -3,7 +3,7 @@ class StripeOauth < Struct.new( :user )
   def oauth_url( params )
     url = client.authorize_url( {
       scope: 'read_write',
-      stripe_landing: 'login',
+      stripe_landing: 'register',
       stripe_user: {
         email: user.email
       }
@@ -58,7 +58,7 @@ class StripeOauth < Struct.new( :user )
   def verify!( code )
     data = client.get_token( code, {
       headers: {
-        'Authorization' => "Bearer #{Rails.application.secrets.stripe_secret_key}"
+        'Authorization' => "Bearer #{Stripe.api_key}"
       }
     } )
 
@@ -76,9 +76,9 @@ class StripeOauth < Struct.new( :user )
   def deauthorize!
     response = RestClient.post(
       'https://connect.stripe.com/oauth/deauthorize',
-      { client_id: Rails.application.secrets.stripe_client_id,
+      { client_id: ENV['STRIPE_CONNECT_CLIENT_ID'],
         stripe_user_id: user.stripe_user_id },
-      { 'Authorization' => "Bearer #{Rails.application.secrets.stripe_secret_key}" }
+      { 'Authorization' => "Bearer #{Stripe.api_key}" }
     )
     user_id = JSON.parse( response.body )['stripe_user_id']
 
@@ -111,8 +111,8 @@ class StripeOauth < Struct.new( :user )
   # Used in #oauth_url and #verify!
   def client
     @client ||= OAuth2::Client.new(
-      Rails.application.secrets.stripe_client_id,
-      Rails.application.secrets.stripe_secret_key,
+      ENV['STRIPE_CONNECT_CLIENT_ID'],
+      Stripe.api_key,
       {
         site: 'https://connect.stripe.com',
         authorize_url: '/oauth/authorize',
