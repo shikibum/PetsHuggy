@@ -61,7 +61,7 @@ class StripeOauth < Struct.new( :user )
         'Authorization' => "Bearer #{Stripe.api_key}"
       }
     } )
-
+# use modelへsave
     user.stripe_user_id = data.params['stripe_user_id']
     user.stripe_account_type = 'oauth'
     user.publishable_key = data.params['stripe_publishable_key']
