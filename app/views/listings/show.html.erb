@@ -46,8 +46,8 @@
       <div class="row">
         <div class="col-md-3 text-center row-space-2">
           <%= link_to user_path(@listing.user) do %>
-          <% if @listing.user.image.present? %>
-          <%= image_tag @listing.user.image,class:"img-circle profile-2" %>
+          <% if @listing.user..present? %>
+          <%= image_tag @listing.user.image.url, class:"img-circle profile-2" %>
           <% end %>
           <% end %>
           <h5><%= @listing.user.name %></h5>
@@ -84,7 +84,7 @@
             </div>
 
             <div class="panel-body panel-real">
-              <%= form_for [@listing, @listing.reservations.new] do |f| %>
+              <%= form_for [@listing, @listing.reservations.new], url:new_listing_reservation_path(@listing), html: {method: "get"} do |f| %>
 
               <!-- これは、予約をするときに、一緒におくる、データです。-->
               <%= f.hidden_field :listing_id, value: @listing.id %>
@@ -255,7 +255,7 @@
               </div>
               <div class="col-md-3 col-xs-3">
                 <% if listing.user.image.present? %>
-                <%= image_tag listing.user.image,class:"img-circle profile-1" %>
+                <%= image_tag listing.user.image.url,class:"img-circle profile-1" %>
                 <% end %>
               </div>
               <div class="price-card">
