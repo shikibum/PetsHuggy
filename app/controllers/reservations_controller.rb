@@ -2,11 +2,11 @@ class ReservationsController < ApplicationController
 
   def new
     @listing = Listing.find(params[:listing_id])
-    @user  current_user
-    @start_date = params[:reservation][:start_date]
-    @end_date = params[:reservation][:end_date]
-    @price_pernight = params[:reservation][:price_pernight]
-    @total_price = params[:reservation][:total_price]
+    @user = current_user
+    @start_date =  params[:reservation][:start_date]
+    @end_date =  params[:reservation][:end_date]
+    @price_pernight =  params[:reservation][:price_pernight]
+    @total_price =  params[:reservation][:total_price]
   end
 
   def index
@@ -48,7 +48,7 @@ class ReservationsController < ApplicationController
       selectedDates
       if selectedDates
         selectedDates.each do |date|
-          current_user.reservations.create(:listing_id => @listing.id,:start_date => date,:end_date => date, :self_booking => true)
+          current_user.reservations.create(:listing_id => @listing.id,:start_date => date,:end_date => date,:self_booking => true)
         end
       end
 
