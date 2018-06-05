@@ -16,14 +16,16 @@ before_action :access_deny, only: [:basics, :description, :address, :price, :pho
 
     @reviews = @listing.reviews
 
-    @currentUserReview = @review.find_by(user_id: current_user.id) if current_user
+    @currentUserReview = @reviews.find_by(user_id: current_user.id) if current_user
   end
 
   def new
+    # 現在のユーザーのリスティングの作成
     @listing = current_user.listings.build
   end
 
   def create
+    # パラメーターとともに現在のユーザーのリスティングを作成
     @listing = current_user.listings.build(listing_params)
 
     if @listing.save
