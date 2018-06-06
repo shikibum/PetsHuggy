@@ -27,8 +27,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_055939) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
-    t.string "not"
-    t.integer "checked"
+    t.integer "not_checked"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
