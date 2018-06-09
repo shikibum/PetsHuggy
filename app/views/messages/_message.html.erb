@@ -2,8 +2,10 @@
 <div class="panel panel-defaukt">
   <div class="panel=body">
     <div class="row">
-      <div class="col-md-e text-center row-space-1">
-        <%= omage_tag message.user.image.url, class: "img-circle profile-1" %>
+      <div class="col-md-2 text-center row-space-1">
+        <% if message.user.image.present? %>
+        <%= image_tag message.user.image.url, class: "img-circle profile-1" %>
+        <% end %>
         <br>
         <strong><%= message.user.name %></strong>
       </div>

@@ -3,7 +3,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 text-center">
-            <%= image_tag @other.image.url, class: "img-circle profile-1" %><br>
+            <% if @other.image.present? %>
+            <%= image_tag @other.image.url, class: "img-circle profile-1" %>
+            <% end %>
+            <br>
             <strong><%= @other.name %></strong>
             <%= link_to "Show Profile", @other, class: "btn btn-default btn-wide row-space-2 row-space-top-2" %>
         </div>
