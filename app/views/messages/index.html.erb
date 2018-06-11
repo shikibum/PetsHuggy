@@ -8,6 +8,7 @@
             <% end %>
             <br>
             <strong><%= @other.name %></strong>
+            <br>
             <%= link_to "Show Profile", @other, class: "btn btn-default btn-wide row-space-2 row-space-top-2" %>
         </div>
 
@@ -36,4 +37,5 @@
             </div>
         </div>
     </div>
+    <%= subscribe_to conversation_messages_path(@conversation) %>
 </div>

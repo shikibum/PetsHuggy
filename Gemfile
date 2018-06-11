@@ -26,6 +26,7 @@ gem 'geocoder'
 gem 'stripe'
 gem "rest-client"
 
+gem "private_pub"
 
 group :production do
   gem 'pg'

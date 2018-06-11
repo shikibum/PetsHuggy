@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require jquery-ui/datepicker
 //= require jquery-ui/datepicker-ja
+//= require private_pub
 //= require toastr
 //= require activestorage
 //= require turbolinks
