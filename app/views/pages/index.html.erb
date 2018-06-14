@@ -21,7 +21,7 @@
       <div class="row">
         <div class="container">
           <div class="col-md-7 col-xs-10" style="padding-right: 0px;">
-            <%= text_field_tag :seach, params[:seach], placeholder: "お探しの地域は？", class: "form-control"  %>
+            <%= text_field_tag :seach, params[:seach], placeholder: "お探しの地域は？", class: "form-control" , id:"top-seach-form" %>
           </div>
 
           <div class="col-md-2 hidden-xs hidden-sm">
@@ -100,3 +100,27 @@
 </div>
 
 <%= render "partial/footer" %>
+
+<script>
+function init() {
+
+  var input = /** @type {!HTMLInputElement} */(
+      document.getElementById('top-seach-form'));
+
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
+
+  autocomplete.addListener('place_changed', function() {
+
+    var place = autocomplete.getPlace();
+
+    if (!place.geometry) {
+      window.alert("Autocomplete's returned place contains no geometry");
+      return;
+    }
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQNjd9FGbugyhsXRtFoVKcGuQwV3rDsd4&signed_in=true&libraries=places&callback=init"
+    async defer></script>
