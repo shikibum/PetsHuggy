@@ -108,11 +108,14 @@ function init() {
       document.getElementById('top-seach-form'));
 
   var autocomplete = new google.maps.places.Autocomplete(input);
-  autocomplete.bindTo('bounds', map);
-
   autocomplete.addListener('place_changed', function() {
 
     var place = autocomplete.getPlace();
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
+
+    alert(lat);
+    alert(lng);
 
     if (!place.geometry) {
       window.alert("Autocomplete's returned place contains no geometry");
