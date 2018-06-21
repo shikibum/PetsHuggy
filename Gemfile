@@ -25,9 +25,9 @@ gem 'aws-sdk', '~> 2.3'
 gem 'geocoder'
 gem 'stripe'
 gem "rest-client"
-gem 'ransack'
 
 gem "private_pub"
+gem 'ransack'
 
 group :production do
   gem 'pg'

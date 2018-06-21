@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_listing, only: [:update, :show, :basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
-  before_action :access_deny, only: [:basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
+  before_action :set_listing, only:[:update, :show, :basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
+  before_action :access_deny, only:[:basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
 
 
   def index
@@ -16,7 +16,7 @@ class ListingsController < ApplicationController
 
     @reviews = @listing.reviews
 
-    @currentUserReview = @reviews.find_by(user_id: current_user.id) if current_user
+    @currentUserReview = @reviews.find_by(user_id:current_user.id) if current_user
   end
 
   def new
@@ -74,7 +74,7 @@ class ListingsController < ApplicationController
 
   def not_checked
     @listing = Listing.find(params[:listing_id])
-    @listing.update(not_checked: params[:not_checked])
+    @listing.update(not_checked:params[:not_checked])
     render :nothing => true
   end
 
