@@ -74,10 +74,8 @@ class PagesController < ApplicationController
     # Q条件をまとめたものをセッションQに入れる
     session[:q] = {"price_pernight_gteq"=>session[:price_pernight_gteq], "price_pernight_lteq"=>session[:price_pernight_lteq],  "home_type_eq_any"=>session[:home_type_eq_any], "pet_type_eq"=>session[:pet_type_eq], "breeding_years_gteq"=>session[:breeding_years_gteq]}
 
-    hash = session[:q]
-
     # ransack検索
-    @search = @listings.ransack(hash)
+    @search = @listings.ransack(session[:q])
     @result = @search.result(distinct: true)
 
      #リスティングデータを配列にしてまとめる
