@@ -81,7 +81,7 @@ function initMap() {
     map: map,
     anchorPoint: new google.maps.Point(0, -29)
   });
-
+//  autocompleteの検索欄が変更されたときの処理
   autocomplete.addListener('place_changed', function() {
 
     // すべてのinfowindowを消す
@@ -131,6 +131,34 @@ function initMap() {
         // this data is data for sending to url
         data: {'geolocation': geolocation, 'location': location}
     });
+  });
+
+  // google mapがドラッグされたときの処理
+  google.maps.event.addListener(map, 'dragend', function() {
+    // すべてのinfowinowをけす
+    infowindows.forEach(function(infowindow) {
+      infowindow.close();
+    });
+    infowindows = [];
+
+    // すべてのマーカーを消す
+    markers.forEach(function(marker) {
+      marker.setVisible(false);
+    });
+    markers = [];
+
+    var pos = map.getCenter();
+    var lat = pos.lat();
+    var lng = pos.lng();
+
+    var geolocation = [lat,lng];
+
+    $.ajax({
+      url: 'ajaxsearch',
+      // this data is data for sending to url
+      data: {'geolocation': geolocation}
+    });
+
   });
 }
 
