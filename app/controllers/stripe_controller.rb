@@ -8,6 +8,9 @@ class StripeController < ApplicationController
     url, error = connector.oauth_url( redirect_uri: stripe_confirm_url )
 
     if url.nil?
+      logger.info('*' * 20)
+      logger.info error
+      logger.info('*' * 20)
       flash[:error] = error
       redirect_to manage_listing_bankaccount_path( session[:listing_id] )
     else
