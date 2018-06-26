@@ -75,7 +75,7 @@ class ListingsController < ApplicationController
   def not_checked
     @listing = Listing.find(params[:listing_id])
     @listing.update(not_checked:params[:not_checked])
-    render :nothing => true
+    head :not_found
   end
 
   private
