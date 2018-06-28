@@ -384,8 +384,8 @@ li#nav-publish a{
   font-weight: bold;
 }
 
-// top-seach-field
-.top-seach-field {
+// top-search-field
+.top-search-field {
   height: 90px;
   background: #fff;
   position: absolute;
@@ -397,12 +397,12 @@ li#nav-publish a{
 }
 
 @media (min-width: 992px) {
-  .top-seach-field .col-md-7, .col-md-2, .col-md-1 {
+  .top-search-field .col-md-7, .col-md-2, .col-md-1 {
     padding: 0;
     }
   }
 
-.top-seach-field input {
+.top-search-field input {
   border-radius: 0;
 }
 
