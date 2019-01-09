@@ -1,24 +1,2 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Udemy 「 【質問対応停止中】【作りながら覚える！】 Ruby on Rails を用いたウェブ開発(Airbnbを作ろう！) 」の成果物
+Airbnbのペット版クローンサイト。
